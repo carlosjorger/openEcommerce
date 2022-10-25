@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react';
-
+import CreatePopUp from './Create/Create'
 export class Product extends Component {
     constructor(props) {
         super(props);
@@ -10,7 +10,9 @@ export class Product extends Component {
     }
     static renderProductsTable(products) {
         return (
-            <table className='table table-striped' aria-labelledby="tabelLabel">
+            <>
+                <CreatePopUp></CreatePopUp>
+                <table className='table table-striped' aria-labelledby="tabelLabel">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -18,14 +20,14 @@ export class Product extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {products.map(product =>
-                        <tr>
-                            <td>{product.name}</td>
-                            <td>{product.price}</td>
-                        </tr>
+                    {products.map(product => <tr>
+                        <td>{product.name}</td>
+                        <td>{product.price}</td>
+                    </tr>
                     )}
                 </tbody>
-            </table>
+                </table>
+            </>
         );
     }
     render() {

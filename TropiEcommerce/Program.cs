@@ -1,9 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using TropiEcommerce.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
 
+var connectionString = builder.Configuration.GetConnectionString("PostgreSQLConnection");
+builder.Services.AddDbContext<EcommerceDb>(
+    options=>
+    options.UseNpgsql(connectionString)
+);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
