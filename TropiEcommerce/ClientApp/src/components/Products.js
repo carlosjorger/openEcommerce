@@ -8,7 +8,7 @@ export class Product extends Component {
     componentDidMount() {
         this.populateProductData();
     }
-    static renderProductsTable(products) {
+    static renderProductsTable(products, componentDidMount) {
         return (
             <>
                 <CreatePopUp></CreatePopUp>
@@ -33,7 +33,7 @@ export class Product extends Component {
     render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : Product.renderProductsTable(this.state.products);
+            : Product.renderProductsTable(this.state.products, this.populateProductData);
 
         return (
             <div>
@@ -46,7 +46,7 @@ export class Product extends Component {
     async populateProductData() {
         const response = await fetch('product');
         const data = await response.json();
-        console.log(data);
+        console.log(data)
         this.setState({ products: data, loading: false });
     }
 }
