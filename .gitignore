@@ -231,3 +231,4 @@ _Pvt_Extensions
 # FAKE - F# Make
 .fake/
 *.1
+*.v5.1
