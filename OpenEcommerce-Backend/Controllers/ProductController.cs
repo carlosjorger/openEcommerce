@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Runtime.InteropServices;
-using OpenEcommerce_Backend.Data;
-using OpenEcommerce_Backend.Models;
 using Microsoft.EntityFrameworkCore;
+using Infrastructure.Persistence;
+using Backend.Domain.Models;
+using Application.TodoProduct.Repository;
 
 namespace OpenEcommerce_Backend.Controllers
 {
@@ -11,18 +12,17 @@ namespace OpenEcommerce_Backend.Controllers
     public class ProductController : ControllerBase
     {
         private readonly ILogger<ProductController> _logger;
-        private readonly EcommerceDb _ecommerceDb;
+        private readonly ProductBusiness _productDb;
 
 
-        public ProductController(ILogger<ProductController> logger, EcommerceDb ecommerceDb)
+        public ProductController(ILogger<ProductController> logger, ProductBusiness productDb)
         {
             _logger = logger;
-            _ecommerceDb = ecommerceDb;
+            _productDb = productDb;
         }
         [HttpPost]
         public async Task<Product> Create(Product product) {
-            await _ecommerceDb.Products.AddAsync(product);
-            await _ecommerceDb.SaveChangesAsync();
+            await _productDb.Create(product);
             return product;
         }
         [HttpPut]
@@ -30,27 +30,20 @@ namespace OpenEcommerce_Backend.Controllers
         {
             if (ModelState.IsValid)
             {
-                _ecommerceDb.Products.Attach(product);
-                _ecommerceDb.Entry(product).State = EntityState.Modified;
-                await _ecommerceDb.SaveChangesAsync();
+                await _productDb.EditProduct(product);
             }
             return product;
         }
         [HttpGet]
         public IEnumerable<Product> Get()
         {
-            return _ecommerceDb.Products;
+            return _productDb.GetProducts();
            
         }
         [HttpDelete]
-        public async Task<IActionResult> Delete(int id) { 
-        
-            var product=await _ecommerceDb.Products.FindAsync(id);
-            if (product == null) { 
-                return NotFound($"Not Found Product with id = {id}");
-            }
-            _ecommerceDb.Products.Remove(product!);
-            await _ecommerceDb.SaveChangesAsync();
+        public async Task<IActionResult> Delete(int id) {
+
+            await _productDb.DeleteProduct(id);
             return Ok();
         }
     }

@@ -1,5 +1,8 @@
+using Application.Common.Interfaces;
+using Application.TodoProduct.Repository;
+using Backend.Domain.Models;
+using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using OpenEcommerce_Backend.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,10 +13,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("PostgreSQLConnection");
-builder.Services.AddDbContext<EcommerceDb>(
+builder.Services.AddDbContext<ProductDb>(
     options =>
     options.UseNpgsql(connectionString)
 );
+builder.Services.AddScoped<IApplicationDbContext<Product>, ProductDb>();
+builder.Services.AddScoped<ProductBusiness>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
