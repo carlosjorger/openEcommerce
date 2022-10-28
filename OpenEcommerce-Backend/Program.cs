@@ -1,6 +1,8 @@
+using Application;
 using Application.Common.Interfaces;
 using Application.TodoProduct.Repository;
 using Backend.Domain.Models;
+using Infrastructure;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,8 +19,8 @@ builder.Services.AddDbContext<ProductDb>(
     options =>
     options.UseNpgsql(connectionString)
 );
-builder.Services.AddScoped<IApplicationDbContext<Product>, ProductDb>();
-builder.Services.AddScoped<ProductBusiness>();
+builder.Services.AddDbContexts();
+builder.Services.AddBusiness();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
