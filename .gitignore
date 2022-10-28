@@ -9,6 +9,7 @@
 *.v2
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
+*.1
 
 # Build results
 [Dd]ebug/
@@ -230,5 +231,5 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
-*.1
-*.v5.1
+
+
