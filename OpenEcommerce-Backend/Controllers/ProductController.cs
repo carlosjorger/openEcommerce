@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Infrastructure.Persistence;
 using Backend.Domain.Models;
 using Application.TodoProduct.Repository;
+using MediatR;
+using Application.Products.Query;
 
 namespace OpenEcommerce_Backend.Controllers
 {
@@ -13,12 +15,14 @@ namespace OpenEcommerce_Backend.Controllers
     {
         private readonly ILogger<ProductController> _logger;
         private readonly ProductBusiness _productDb;
+        private readonly IMediator _mediator;
 
 
-        public ProductController(ILogger<ProductController> logger, ProductBusiness productDb)
+        public ProductController(ILogger<ProductController> logger, ProductBusiness productDb, IMediator mediator)
         {
             _logger = logger;
             _productDb = productDb;
+            _mediator=mediator;
         }
         [HttpPost]
         public async Task<Product> Create(Product product) {
@@ -35,9 +39,9 @@ namespace OpenEcommerce_Backend.Controllers
             return product;
         }
         [HttpGet]
-        public IEnumerable<Product> Get()
+        public async Task<IEnumerable<Product>> Get()
         {
-            return _productDb.GetProducts();
+            return await _mediator.Send(new GetProducts());
            
         }
         [HttpDelete]

@@ -20,6 +20,7 @@ builder.Services.AddDbContext<ProductDb>(
     options.UseNpgsql(connectionString)
 );
 builder.Services.AddDbContexts();
+builder.Services.AddMediatRConfiguration();
 builder.Services.AddBusiness();
 var app = builder.Build();
 
