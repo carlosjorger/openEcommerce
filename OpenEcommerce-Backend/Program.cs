@@ -5,7 +5,7 @@ using Backend.Domain.Models;
 using Infrastructure;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-
+var corsConfiguration = "_corsConfiguration";
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,6 +22,12 @@ builder.Services.AddDbContext<ProductDb>(
 builder.Services.AddDbContexts();
 builder.Services.AddMediatRConfiguration();
 builder.Services.AddBusiness();
+builder.Services.AddCors(options => {
+    options.AddPolicy(name:corsConfiguration,
+        builder=>{
+            builder.WithOrigins("*");
+        });
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -34,7 +40,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
+app.UseCors(corsConfiguration);
 app.MapControllers();
 
 app.Run();
