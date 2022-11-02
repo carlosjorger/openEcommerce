@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenEcommerce", "TropiEcommerce\OpenEcommerce.csproj", "{59F5167A-56E1-4D6D-A67F-B460FE9E8D6A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenEcommerce-Backend", "OpenEcommerce-Backend\OpenEcommerce-Backend.csproj", "{BE6B1E99-830F-4FF1-BC7A-0EDAAABCBDC8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{1890BA19-D3C5-4F5C-A484-F06BA82159D6}"
@@ -21,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{59F5167A-56E1-4D6D-A67F-B460FE9E8D6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{59F5167A-56E1-4D6D-A67F-B460FE9E8D6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{59F5167A-56E1-4D6D-A67F-B460FE9E8D6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{59F5167A-56E1-4D6D-A67F-B460FE9E8D6A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BE6B1E99-830F-4FF1-BC7A-0EDAAABCBDC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BE6B1E99-830F-4FF1-BC7A-0EDAAABCBDC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE6B1E99-830F-4FF1-BC7A-0EDAAABCBDC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
